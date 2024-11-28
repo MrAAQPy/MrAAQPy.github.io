@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 - Page Not Found</title>
+  <style>
+    /* Base styles */
+    body {
+      background-color: #0d1117;
+      color: #c9d1d9;
+      font-family: "Fira Code", monospace;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Container styles */
+    .container {
+      text-align: center;
+    }
+
+    .error-code {
+      font-size: 10rem;
+      font-weight: bold;
+      text-shadow: 0px 0px 20px rgba(255, 110, 110, 0.7);
+      transition: color 0.05s ease-in-out;
+    }
+
+    .error-message {
+      font-size: 2rem;
+      margin: 20px 0;
+      animation: fadeIn 3s ease-in-out infinite alternate;
+    }
+
+    .typing-effect {
+      color: #58a6ff;
+      border-right: 2px solid #58a6ff;
+      display: inline-block;
+      font-weight: bold;
+      animation: blink 0.7s steps(2, start) infinite;
+    }
+
+    .suggestion {
+      font-size: 1.2rem;
+      margin: 30px 0;
+      color: #8b949e;
+    }
+
+    .link {
+      color: #a5d6ff;
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: 2px solid #a5d6ff;
+      border-radius: 5px;
+      transition: all 0.3s ease-in-out;
+    }
+
+    .link:hover {
+      background-color: #a5d6ff;
+      color: #0d1117;
+    }
+
+    /* Animations */
+    @keyframes fadeIn {
+      0% {
+        opacity: 0.5;
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+
+    @keyframes blink {
+      0% {
+        border-color: transparent;
+      }
+      100% {
+        border-color: #58a6ff;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="error-code" class="error-code">404</div>
+    <div class="error-message">
+      <span id="typing-text" class="typing-effect"></span>
+    </div>
+    <div class="suggestion">
+      Let's go back to the <a href="https://ayatblog.ir" class="link">homepage</a> and try again.
+    </div>
+  </div>
+
+  <script>
+    // Typing effect
+    const messages = [
+      "Page not found...",
+      "Are you lost in the code?",
+      "Error 404: Something went wrong!",
+      "Oops! This page doesn't exist.",
+    ];
+
+    const typingText = document.getElementById("typing-text");
+    let messageIndex = 0;
+    let charIndex = 0;
+
+    function typeMessage() {
+      if (charIndex < messages[messageIndex].length) {
+        typingText.textContent += messages[messageIndex].charAt(charIndex);
+        charIndex++;
+        setTimeout(typeMessage, 100);
+      } else {
+        setTimeout(deleteMessage, 1500);
+      }
+    }
+
+    function deleteMessage() {
+      if (charIndex > 0) {
+        typingText.textContent = messages[messageIndex].substring(0, charIndex - 1);
+        charIndex--;
+        setTimeout(deleteMessage, 50);
+      } else {
+        messageIndex = (messageIndex + 1) % messages.length;
+        setTimeout(typeMessage, 500);
+      }
+    }
+
+    // Glitch effect for 404
+    const errorCode = document.getElementById("error-code");
+    const colors = [
+      "#ffffff", "#ff6e6e", "#ffff00", "#58a6ff", "#ff00ff", 
+      "#00ff00", "#ff4500", "#00ffff", "#ff1493"
+    ]; // Diverse colors for glitch effect
+
+    function glitchEffect() {
+      const randomColor = colors[Math.floor(Math.random() * colors.length)];
+      const randomShadow = `0px 0px ${Math.floor(Math.random() * 20 + 10)}px ${randomColor}`;
+      errorCode.style.color = randomColor;
+      errorCode.style.textShadow = randomShadow;
+      setTimeout(glitchEffect, 50); // Change color and shadow every 50ms
+    }
+
+    // Start effects
+    typeMessage();
+    glitchEffect();
+  </script>
+</body>
+</html>
