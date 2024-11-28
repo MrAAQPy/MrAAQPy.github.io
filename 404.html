@@ -21,6 +21,7 @@
     /* Container styles */
     .container {
       text-align: center;
+      padding: 20px;
     }
 
     .error-code {
@@ -81,6 +82,45 @@
       }
       100% {
         border-color: #58a6ff;
+      }
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .error-code {
+        font-size: 6rem;
+      }
+
+      .error-message {
+        font-size: 1.5rem;
+      }
+
+      .suggestion {
+        font-size: 1rem;
+      }
+
+      .link {
+        font-size: 1rem;
+        padding: 8px 16px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .error-code {
+        font-size: 4rem;
+      }
+
+      .error-message {
+        font-size: 1.2rem;
+      }
+
+      .suggestion {
+        font-size: 0.9rem;
+      }
+
+      .link {
+        font-size: 0.9rem;
+        padding: 6px 12px;
       }
     }
   </style>
