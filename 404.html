@@ -35,6 +35,9 @@
       font-size: 2rem;
       margin: 20px 0;
       animation: fadeIn 3s ease-in-out infinite alternate;
+      white-space: nowrap; /* Ensure text stays in a single line */
+      overflow: hidden; /* Prevent overflowing */
+      text-overflow: ellipsis;
     }
 
     .typing-effect {
@@ -132,7 +135,7 @@
       <span id="typing-text" class="typing-effect"></span>
     </div>
     <div class="suggestion">
-      Let's go back to the <a href="https://ayatblog.ir" class="link">homepage</a> and try again.
+      Let's go back to the <a href="https://ayatblog.ir" class="link">homepage</a>.
     </div>
   </div>
 
