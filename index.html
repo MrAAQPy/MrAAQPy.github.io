@@ -307,7 +307,72 @@
                             });
                         </script>
             
-
+            <div id="comments" class="grid grid-cols-1 gap-8 mb-8">
+                <h3 class="text-2xl font-bold text-center">نظرات کاربران</h3>
+                
+                <!-- فرم ارسال نظر -->
+                <form id="comment-form" class="bg-black p-6 rounded-lg neon-border">
+                    <input 
+                        id="comment-name" 
+                        type="text" 
+                        placeholder="نام شما..." 
+                        required 
+                        class="w-full p-2 rounded-lg text-lg mb-4 text-black"
+                    />
+                    <textarea 
+                        id="comment-text" 
+                        placeholder="نظر خود را بنویسید..." 
+                        required 
+                        class="w-full p-2 rounded-lg text-lg text-black">
+                    </textarea>
+                    <button 
+                        type="submit" 
+                        class="bg-green-500 text-white font-bold py-2 px-4 rounded-lg mt-4 hover:bg-green-600">
+                        ارسال
+                    </button>
+                </form>
+                
+                <!-- لیست نظرات -->
+                <ul id="comment-list" class="bg-black p-6 rounded-lg neon-border">
+                    <!-- نظرات کاربران اینجا نمایش داده می‌شود -->
+                </ul>
+            </div>
+            
+            <script>
+                const form = document.getElementById('comment-form');
+                const commentList = document.getElementById('comment-list');
+                const comments = JSON.parse(localStorage.getItem('comments')) || [];
+            
+                // رندر کردن نظرات ذخیره‌شده
+                function renderComments() {
+                    commentList.innerHTML = '';
+                    comments.forEach(comment => {
+                        const li = document.createElement('li');
+                        li.innerHTML = `<strong>${comment.name}</strong>: ${comment.text}`;
+                        li.className = 'text-lg p-2 bg-gray-800 rounded-lg mb-2 text-white'; // استایل هر نظر
+                        commentList.appendChild(li);
+                    });
+                }
+            
+                // مدیریت ارسال فرم
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    const name = document.getElementById('comment-name').value.trim();
+                    const text = document.getElementById('comment-text').value.trim();
+                    
+                    if (name && text) {
+                        comments.push({ name, text });
+                        localStorage.setItem('comments', JSON.stringify(comments));
+                        renderComments();
+                        form.reset();
+                    }
+                });
+            
+                // نمایش نظرات در بارگذاری اولیه صفحه
+                renderComments();
+            </script>
+            
+            
             
 
 
